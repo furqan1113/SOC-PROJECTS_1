@@ -1,16 +1,14 @@
-
 # Basic VPN Log Investigation with Splunk
 
 ## Objective
 
-This project was created to practice basic Splunk
-and SPL skills by investigating VPN log data.
+This project was created to practice basic Splunk and SPL skills by investigating VPN log data.
 
 ## Tools Used
 
-- Splunk
-- SPL
-- VPN log dataset
+* Splunk
+* SPL
+* VPN log dataset
 
 ---
 
@@ -21,94 +19,113 @@ and SPL skills by investigating VPN log data.
 ### SPL Query
 
 ```spl
-index="vpn_inv-logs
-| stats count"
+index="vpn_inv-logs"
+| stats count
 ```
-## Result 
-***2862 events*** 
 
+### Result
+
+**2,862 events**
+
+### What I Found
+
+The VPN log dataset contains a total of **2,862 events** available for investigation.
 
 ![q1](./ss/q1-splunk.png)
 
 ## 2. How many log events are captured by the user Maleena?
 
+### SPL Query
 
 ```spl
-index="vpn_inv-logs
+index="vpn_inv-logs"
 | spath
-| search UserName="Maleena"  
-| stats count 
+| search UserName="Maleena"
+| stats count
 ```
-## Result 
-***60 events*** 
 
+### Result
+
+**60 events**
+
+### What I Found
+
+The user `Maleena` was associated with **60 VPN log events** in the dataset.
 
 ![q2](./ss/q2-splunk.png)
 
-
 ## 3. What is the username associated with IP 107.14.182.38?
 
+### SPL Query
+
 ```spl
-index="vpn_inv-logs
+index="vpn_inv-logs"
 | spath
-| search Source_ip="107.14.182.38""  
+| search Source_ip="107.14.182.38"
 | stats values(UserName) as Username
 ```
 
-## Result 
-***Smith *** 
+### Result
 
+**Smith**
+
+### What I Found
+
+The IP address `107.14.182.38` was associated with the username **Smith**.
 
 ![q3](./ss/q3-splunk.png)
 
-
 ## 4. What is the number of events that originated from all countries except France?
 
-```spl
-index="vpn_inv-logs
-| spath
-| search Source_Country!="France"  
-| stats count 
-```
-## Result 
-***2814 events*** 
+### SPL Query
 
+```spl
+index="vpn_inv-logs"
+| spath
+| search Source_Country!="France"
+| stats count
+```
+
+### Result
+
+**2,814 events**
+
+### What I Found
+
+There were **2,814 VPN log events** originating from countries other than France.
 
 ![q4](./ss/q4-splunk.png)
 
 ## 5. How many VPN events were associated with the IP 107.3.206.58?
 
+### SPL Query
 
-
-```spl 
-index="vpn_inv-logs" 
-|  spath 
-| search Source_ip="107.3.206.58" 
-| stats count 
+```spl
+index="vpn_inv-logs"
+| spath
+| search Source_ip="107.3.206.58"
+| stats count
 ```
-## Result 
-***14 events*** 
 
+### Result
+
+**14 events**
+
+### What I Found
+
+The IP address `107.3.206.58` was associated with **14 VPN log events** in the dataset.
 
 ![q5](./ss/q5-splunk.png)
 
+---
 
+## Investigation Summary
 
-## What I learned
+This investigation used basic Splunk SPL commands to examine VPN log activity.
 
-While doing this small investigation, I practiced:
+The dataset contained **2,862 events**. I investigated activity associated with specific users, source IP addresses, and countries using field-based searches and aggregation.
 
-- How Splunk indexes work
-- Basic SPL searches
-- Searching using fields and values
-- Filtering log data
-- Counting events
-- Investigating users and IP addresses
-- Understanding information contained in VPN logs
-
-## What I want to learn next
-
-This was just a basic exercise. As I continue learning SOC Level 1, I want to come back to projects like this and make them more advanced with better investigations and more complex SPL queries.
+This project helped me build a basic understanding of how SOC analysts can use SIEM logs to investigate and understand security log activity.
 
 ## Note
 
