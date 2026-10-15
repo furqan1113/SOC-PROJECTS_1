@@ -1,0 +1,18 @@
+john.doe@example.com
+jane@sub.domain.co
+noatsign.com
+missingusername@domain.com
+@nousername.com
+user@.startdot.com
+user@enddot.com.
+user@@doubleat.com
+user name@example.com
+username@examplecom
+name@domain.c
+test@space in domain.com
+hello@ex ample.com
+tricky@sub.domain.com
+sex123#@gmail.com
+hi@gmail.com
+instagram.com
+yy@you.in
